@@ -340,7 +340,6 @@ vendor/etc/init/ipa_fws.rc
 
 # IRQ balance
 vendor/bin/msm_irqbalance
-vendor/etc/msm_irqbalance.conf
 
 # Kernel
 vendor/bin/init.qti.kernel.sh
