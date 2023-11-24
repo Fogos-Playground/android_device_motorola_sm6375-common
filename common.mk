@@ -179,6 +179,9 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     fstab.qcom.vendor_ramdisk \
     init.class_main.sh \
+    init.kernel.post_boot-blair.sh \
+    init.kernel.post_boot-holi.sh \
+    init.kernel.post_boot.sh \
     init.mmi.boot.sh \
     init.mmi.charge_only.rc \
     init.mmi.chipset.rc \
