@@ -290,6 +290,7 @@ ro.surface_flinger.wcg_composition_dataspace=143261696
 
 # USB
 sys.usb.mtp.batchcancel=1
+vendor.usb.device=4e00000.ssusb
 vendor.usb.diag.func.name=ffs
 vendor.usb.dpl.inst.name=dpl
 vendor.usb.qdss.inst.name=qdss
