@@ -117,6 +117,10 @@ service vendor.pd_mapper /vendor/bin/pd-mapper
     user system
     group system log diag
 
+on property:sys.boot_completed=1
+    # Enable PowerHAL hint processing
+    setprop vendor.powerhal.init 1
+
 #Peripheral manager
 service vendor.per_mgr /vendor/bin/pm-service
     class core
