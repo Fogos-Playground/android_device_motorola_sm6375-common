@@ -20,6 +20,9 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
+# Force any prefer32 targets to be compiled as 64 bit.
+FORCE_MULTILIB_FIRST_ON_DEVICE := true
+
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
