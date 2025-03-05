@@ -74,7 +74,6 @@ AB_OTA_PARTITIONS += \
 AUDIO_FEATURE_ENABLED_AHAL_EXT := false
 AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
 AUDIO_FEATURE_ENABLED_DLKM := true
-AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := false
 AUDIO_FEATURE_ENABLED_DTS_EAGLE := false
 AUDIO_FEATURE_ENABLED_DYNAMIC_LOG := false
 AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT := true
@@ -95,7 +94,7 @@ TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 
 # HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     hardware/motorola/vintf/device_framework_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
     vendor/lineage/config/device_framework_matrix.xml
