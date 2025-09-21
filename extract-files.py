@@ -53,6 +53,8 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libcrypto_shim.so'),
     ('vendor/bin/init.kernel.post_boot-blair.sh', 'vendor/bin/init.kernel.post_boot-holi.sh'): blob_fixup()
         .regex_replace('ro.boot.using_zram_from_fstab', 'ro.vendor.zram.swapon'),
+    'vendor/lib/soundfx/libspeakerbundle.so': blob_fixup()
+        .replace_needed('libutils.so', 'libutils-v32.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
