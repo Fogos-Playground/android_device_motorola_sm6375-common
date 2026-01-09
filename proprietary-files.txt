@@ -374,10 +374,6 @@ vendor/lib64/libminksocket.so
 # OEM
 vendor/bin/motobox;SYMLINK=vendor/bin/expat
 
-# PASR manager
-vendor/lib64/vendor.qti.memory.pasrmanager@1.0.so
-vendor/lib64/vendor.qti.memory.pasrmanager@1.1.so
-
 # Peripheral manager
 vendor/bin/pm-proxy
 vendor/bin/pm-service
