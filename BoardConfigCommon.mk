@@ -20,31 +20,76 @@ TARGET_NO_BOOTLOADER := true
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := \
-    androidboot.console=ttyMSM0 \
+    video=vfb:640x400,bpp=32,memsize=3072000 \
+    msm_rtb.filter=0x237 \
+    iptable_raw.raw_before_defrag=1 \
+    ip6table_raw.raw_before_defrag=1 \
+    firmware_class.path=/vendor/firmware_mnt/image \
+    pstore.compress=none \
+    loglevel=4 \
+    log_buf_len=256K \
+    mem.enable_mglru=1 \
+    nosoftlockup
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_BOOTCONFIG := \
     androidboot.hardware=qcom \
     androidboot.memcg=1 \
     androidboot.usbcontroller=4e00000.dwc3 \
-    cgroup.memory=nokmem,nosocket \
-    ip6table_raw.raw_before_defrag=1 \
-    iptable_raw.raw_before_defrag=1 \
-    loop.max_part=7 \
-    lpm_levels.sleep_disabled=1 \
-    msm_rtb.filter=0x237 \
-    pcie_ports=compat \
-    service_locator.enable=1 \
-    swiotlb=0
+    androidboot.load_modules_parallel=true
+
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_RAMDISK_USE_LZ4 := true
-TARGET_KERNEL_NO_GCC := true
+BOARD_USES_GENERIC_KERNEL_IMAGE := true
 TARGET_KERNEL_SOURCE := kernel/motorola/sm6375
-TARGET_KERNEL_CONFIG := vendor/holi-qgki_defconfig vendor/ext_config/lineage_moto-holi.config
+TARGET_KERNEL_CONFIG := \
+    gki_defconfig \
+    vendor/blair_GKI.config \
+    vendor/ext_config/moto-blair.config
+
+BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
+TARGET_NEEDS_DTBOIMAGE := true
+
+# Kernel modules
+TARGET_KERNEL_EXT_MODULE_ROOT := kernel/motorola/sm6375-modules
+TARGET_KERNEL_EXT_MODULES := \
+    qcom/opensource/mmrm-driver \
+    qcom/opensource/mm-drivers/hw_fence \
+    qcom/opensource/mm-drivers/msm_ext_display \
+    qcom/opensource/mm-drivers/sync_fence \
+    qcom/opensource/securemsm-kernel \
+    qcom/opensource/audio-kernel \
+    qcom/opensource/camera-kernel \
+    qcom/opensource/datarmnet-ext/mem \
+    qcom/opensource/dataipa/drivers/platform/msm \
+    qcom/opensource/datarmnet/core \
+    qcom/opensource/datarmnet-ext/aps \
+    qcom/opensource/datarmnet-ext/offload \
+    qcom/opensource/datarmnet-ext/shs \
+    qcom/opensource/datarmnet-ext/perf \
+    qcom/opensource/datarmnet-ext/perf_tether \
+    qcom/opensource/datarmnet-ext/sch \
+    qcom/opensource/datarmnet-ext/wlan \
+    qcom/opensource/display-drivers/msm \
+    qcom/opensource/dsp-kernel \
+    qcom/opensource/video-driver \
+    qcom/opensource/graphics-kernel \
+    qcom/opensource/wlan/platform \
+    qcom/opensource/wlan/qcacld-3.0/.kiwi_v2 \
+    qcom/opensource/wlan/qcacld-3.0/.qca6750 \
+    qcom/opensource/bt-kernel \
+    nxp/opensource/driver
+
+BOOT_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_dlkm))
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.first_stage))
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD  := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
 
 # Platform
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_BOARD_PLATFORM := holi
+TARGET_BOARD_PLATFORM := blair
 
 BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/fsg:/fsg
@@ -143,10 +188,10 @@ TARGET_RECOVERY_WIPE := $(COMMON_PATH)/recovery/recovery.wipe
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # SELinux
-include device/qcom/sepolicy_vndr/SEPolicy.mk
-include device/lineage/sepolicy/libperfmgr/sepolicy.mk
-include hardware/motorola/sepolicy/qti/SEPolicy.mk
-BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
+# include device/qcom/sepolicy_vndr/SEPolicy.mk
+# include device/lineage/sepolicy/libperfmgr/sepolicy.mk
+# include hardware/motorola/sepolicy/qti/SEPolicy.mk
+# BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
 # Verified Boot
 BOARD_AVB_ENABLE := true

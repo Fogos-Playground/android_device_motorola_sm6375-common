@@ -72,23 +72,15 @@ PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.3-impl \
     audioadsprpcd \
     audio.bluetooth.default \
-    audio.primary.holi \
+    audio.primary.blair \
     audio.r_submix.default \
     audio.usb.default \
-    liba2dpoffload \
     libbatterylistener \
-    libcirrusspkrprot \
-    libcomprcapture \
-    libexthwplugin \
-    libhdmiedid \
-    libhfp \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    libsndmonitor \
-    libspkrprot \
     libvolumelistener \
-    sound_trigger.primary.holi
+    sound_trigger.primary.blair
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
@@ -108,7 +100,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml
 
 # Board API level
-BOARD_SHIPPING_API_LEVEL := 30
+BOARD_SHIPPING_API_LEVEL := 34
 
 # Boot control
 PRODUCT_PACKAGES += \
@@ -126,7 +118,6 @@ PRODUCT_COPY_FILES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    android.hardware.graphics.mapper@3.0-impl-qti-display \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     init.qti.display_boot.rc \
     init.qti.display_boot.sh \
